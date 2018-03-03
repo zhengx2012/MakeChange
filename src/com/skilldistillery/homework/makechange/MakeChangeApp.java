@@ -11,9 +11,18 @@ public class MakeChangeApp {
 		System.out.print("What is the price of the product? $");
 		double price = kb.nextDouble();
 		
-		System.out.print("\nHow much will you use to pay? $");
+		System.out.print("How much will you use to pay? $");
 		double priceTendered = kb.nextDouble();
-
+		
+		if (price == priceTendered) {
+			System.out.println("Thank for using the register, you paid the exact amount.");
+		}
+		else if (price > priceTendered) {
+			System.out.println("That amount is not enough, please insert more money. $");
+			double additionalTendered = kb.nextDouble();
+			priceTendered += additionalTendered;
+			
+		}
 		kb.close();
 
 	}
