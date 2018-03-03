@@ -22,8 +22,15 @@ public class MakeChangeApp {
 			double additionalTendered = kb.nextDouble();
 			priceTendered += additionalTendered;
 			
+		} else {
+			double remainder = priceTendered - price;
+			System.out.println(remainder);
 		}
+		
 		kb.close();
 
 	}
+//	public void priceCalculator(double remainder) {
+//		double remainder = priceTendered - price;
+//	}
 }
