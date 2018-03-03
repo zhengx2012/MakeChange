@@ -24,13 +24,16 @@ public class MakeChangeApp {
 			
 		} else {
 			double remainder = priceTendered - price;
-			System.out.println(remainder);
+			priceCalculator(remainder);
 		}
 		
 		kb.close();
 
 	}
-//	public void priceCalculator(double remainder) {
-//		double remainder = priceTendered - price;
-//	}
+	public static void priceCalculator(double returnValue) {
+		String bills [] = {"20 dollar bill", "10 dollar bill", "5 dollar bill", "1 dollar bill"};
+		String change [] = {"Quarter", "Dime", "Nickel", "Penny"};
+		
+		
+	}
 }
