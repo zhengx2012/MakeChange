@@ -26,6 +26,7 @@ public class MakeChangeApp {
 			double remainder = priceTendered - price;
 			int billRemainder =  (int) remainder;
 			billCalc(remainder);
+			System.out.println();
 			
 			double changeRemainder = remainder; 
 			changeRemainder %= changeRemainder;
@@ -36,12 +37,22 @@ public class MakeChangeApp {
 
 	}
 	public static void billCalc(double bill) {
-		String bills [] = {"20 dollar bill", "10 dollar bill", "5 dollar bill", "1 dollar bill"};
+		String changeBills [] = {"20 dollar bills", "10 dollar bills", "5 dollar bills", "1 dollar bills"};
+		for (int i = 0; i < changeBills.length; i++) {
+			System.out.println(changeBills[i]);
+//			if (changeBills[i]) {
+//				
+//			}
+//			
+		}
 		
 		
 	}
 	public static void changeCalc(double change) {
-		String changeCoins [] = {"Quarter", "Dime", "Nickel", "Penny"};
+		String changeCoins [] = {"Quarters", "Dimes", "Nickels", "Pennys"};
+		for (int i = 0; i < changeCoins.length; i++) {
+			System.out.println(changeCoins[i]);
+		}
 		
 	}
 }
