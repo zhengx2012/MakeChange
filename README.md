@@ -5,7 +5,7 @@
 Program to calculate change.
 
 Technologies used:
-*Eclipse
+* Eclipse
 
 #### Project Description
 
