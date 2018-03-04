@@ -36,13 +36,12 @@ public class MakeChangeApp {
 		if (payment > cost) {
 			double remainder = payment - cost;
 			System.out.println("Your change will be:");
-//			int round = (int) (remainder * 100);
-//			remainder = ((double) round) / 100;
-			billCalc(remainder);
+			double billRemainder = billCalc(remainder);
+			changeCalc(billRemainder);
 		}
 	}
 
-	public static void billCalc(double billRemainder) {
+	public static double billCalc(double billRemainder) {
 		String changeBills[] = { " one dollar bills ", " five dollar bills, ", " ten dollar bills, ",
 				" twenty dollar bills, " };
 		int amount[] = { 1, 5, 10, 20, };
@@ -83,15 +82,17 @@ public class MakeChangeApp {
 			cashierSays += ones + changeBills[0];
 		}
 		System.out.println(cashierSays);
-		changeCalc(billRemainder);
+		
+		return billRemainder;
+		
 	}
 
 	public static void changeCalc(double billRemainder) {
-		int round = (int) (billRemainder * 100);
-		billRemainder = ((double) round) / 100;
+		double billR = Math.round(billRemainder*100);
+		billRemainder = billR / 100;
 		String changeCoins[] = { " pennies ", " nickels, ", " dimes, ", " quarters, " };
-		double changeAmount[] = { 0.01, 0.05, 0.10, 0.25 };
-		double pennies = 0.0, nickels = 0.0, dimes = 0.0, quarters = 0.0;
+		double changeAmount[] = { .01, .05, .10, .25 };
+		int pennies = 0, nickels = 0, dimes = 0, quarters = 0;
 		do {
 
 			if (billRemainder >= changeAmount[3]) {
