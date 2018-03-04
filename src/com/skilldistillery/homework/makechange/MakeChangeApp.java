@@ -14,8 +14,6 @@ public class MakeChangeApp {
 		System.out.print("How much will you use to pay? $");
 		double payment = kb.nextDouble();
 
-		System.out.println("Your change will be:");
-
 		cashRegister(cost, payment);
 
 		kb.close();
@@ -25,22 +23,22 @@ public class MakeChangeApp {
 	// If user gives exact change, end program. If user doesn't give enough change,
 	// ask for more.
 	public static void cashRegister(double cost, double payment) {
-		if (cost == payment) {
+		if (cost > payment) {
+			do {
+				System.out.println("That amount is not enough, please insert more money. $");
+				double additionalPayment = kb.nextDouble();
+				payment += additionalPayment;
+			} while (payment <= cost);
+		} else if (cost == payment) {
 			System.out.println("Thank for using the register, you paid the exact amount.");
-		} else if (cost > payment) {
-			System.out.println("That amount is not enough, please insert more money. $");
-			double additionalPayment = kb.nextDouble();
-			payment += additionalPayment;
 
-		} else {
+		}
+		if (payment > cost) {
 			double remainder = payment - cost;
-			double billRemainder = remainder;
-			billCalc(billRemainder);
-			System.out.println();
-
-			// double changeRemainder = remainder;
-			// changeRemainder = remainder - billRemainder;
-			// changeCalc(changeRemainder);
+			System.out.println("Your change will be:");
+			int round = (int) (remainder * 100);
+			remainder = ((double) round) / 100;
+			billCalc(remainder);
 		}
 	}
 
@@ -69,59 +67,39 @@ public class MakeChangeApp {
 				ones = (int) (billRemainder / amount[0]);
 				billRemainder = billRemainder - (amount[0] * ones);
 			}
+
+		} while (billRemainder >= 1);
+		System.out.println(twenties + changeBills[3] + ", " + tens + changeBills[2] + ", " + fives + changeBills[1]
+				+ ", " + ones + changeBills[0]);
+		changeCalc(billRemainder);
+	}
+
+	public static void changeCalc(double billRemainder) {
+		String changeCoins[] = { "pennies", "nickels", "dimes", "quarters" };
+		double changeAmount[] = { 0.01, 0.05, 0.10, 0.25 };
+		double pennies = 0.0, nickels = 0.0, dimes = 0.0, quarters = 0.0;
+		do {
+
 			if (billRemainder > changeAmount[3]) {
-				quarters = (int)(billRemainder / changeAmount[3]);
-//				quarters = quarters * 100;
+				quarters = (int) (billRemainder / changeAmount[3]);
 				billRemainder = (billRemainder - (changeAmount[3] * quarters));
 			}
 			if (billRemainder > changeAmount[2]) {
-				dimes = (int)(billRemainder / amount[2]);
-				billRemainder = billRemainder - (amount[2] * dimes);
+				dimes = (int) (billRemainder / changeAmount[2]);
+				billRemainder = billRemainder - (changeAmount[2] * dimes);
 			}
 			if (billRemainder > changeAmount[1]) {
-				nickels = (int)(billRemainder / amount[1]);
-				billRemainder = billRemainder - (amount[1] * nickels);
+				nickels = (int) (billRemainder / changeAmount[1]);
+				billRemainder = billRemainder - (changeAmount[1] * nickels);
 			}
 			if (billRemainder > changeAmount[0]) {
-				pennies = (int)(billRemainder / amount[0]);
-				billRemainder = billRemainder - (amount[0] * pennies);
+				pennies = (int) (billRemainder / changeAmount[0]);
+				billRemainder = billRemainder - (changeAmount[0] * pennies);
 			}
 
-		} while (billRemainder > 0);
-		System.out.println("testing");
-		System.out.println(twenties + changeBills[3] + ", " + tens + changeBills[2] + ", " + fives + changeBills[1]
-				+ ", " + ones + changeBills[0]);
+		} while (billRemainder >= 0.01);
 		System.out.println(quarters + changeCoins[3] + ", " + dimes + changeCoins[2] + ", " + nickels + changeCoins[1]
 				+ ", " + pennies + changeCoins[0]);
-
 	}
-
-	// public static void changeCalc(double changeRemainder) {
-	// String changeCoins[] = { "pennies", "nickels", "dimes", "quarters" };
-	// double amount [] = { 0.01, 0.05, 0.10, 0.25};
-	// double pennies = 0.0, nickels = 0.0, dimes = 0.0, quarters = 0.0;
-	// do {
-	// if (changeRemainder > amount[3]) {
-	// quarters = changeRemainder / amount[3];
-	// changeRemainder = changeRemainder - (amount[3] * quarters);
-	// }
-	// else if (changeRemainder > amount[2]) {
-	// quarters = changeRemainder / amount[2];
-	// changeRemainder = changeRemainder - (amount[2] * quarters);
-	// }
-	// else if (changeRemainder > amount[1]) {
-	// quarters = changeRemainder / amount[1];
-	// changeRemainder = changeRemainder - (amount[1] * quarters);
-	// }
-	// else if (changeRemainder > amount[0]) {
-	// quarters = changeRemainder / amount[0];
-	// changeRemainder = changeRemainder - (amount[0] * quarters);
-	// }
-	//
-	// } while (changeRemainder >= 0.01);
-	// System.out.println(quarters + changeCoins[3] + ", " + dimes + changeCoins[2]
-	// + ", " + nickels + changeCoins[1]
-	// + ", " + pennies + changeCoins[0]);
-	// }
 
 }
