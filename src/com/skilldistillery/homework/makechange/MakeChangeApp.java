@@ -13,13 +13,15 @@ public class MakeChangeApp {
 
 		System.out.print("How much will you use to pay? $");
 		double priceTendered = kb.nextDouble();
-		
+
 		System.out.println("Your change will be:");
+
 		cashRegister(price, priceTendered);
 
 		kb.close();
 
 	}
+
 	public static void cashRegister(double price, double priceTendered) {
 		if (price == priceTendered) {
 			System.out.println("Thank for using the register, you paid the exact amount.");
@@ -45,31 +47,34 @@ public class MakeChangeApp {
 	 * @param bill
 	 */
 	public static void billCalc(int billRemainder) {
-		String changeBills[] = { " twenty dollar bills", " ten dollar bills", " five dollar bills", " one dollar bills" };
-		int amount[] = { 20, 10, 5, 1 };
-		int extraBills = 0;
-		for (int i = 0; i < amount.length; i++) {
-			do {
-				if (billRemainder > amount[0]) {
-					extraBills %= billRemainder / amount[0];
-					billRemainder = billRemainder /amount[0];
-					System.out.println(billRemainder + changeBills[0]);
-				} 
-				if(billRemainder > amount[1]) {
-					billRemainder = billRemainder / amount [1];
-					System.out.println(billRemainder + changeBills[1]);
-				}
-				if(billRemainder > amount[2]) {
-					billRemainder = billRemainder / amount [2];
-					System.out.println(billRemainder + changeBills[2]);
-				}
-				if(billRemainder > amount[3]) {
-					billRemainder = billRemainder / amount [3];
-					System.out.println(billRemainder + changeBills[3]);
-				}
+		String changeBills[] = { " one dollar bills", " five dollar bills", " ten dollar bills",
+				" twenty dollar bills" };
+		int amount[] = { 1, 5, 10, 20 };
+		int twenties = 0, tens = 0, fives = 0, ones = 0;
+		do {
+			if (billRemainder >= amount[3]) {
+				// extraBills %= billRemainder / amount[3];
+				twenties = billRemainder / amount[3];
+				billRemainder = billRemainder - (amount[3] * twenties);
+			}
+			if (billRemainder >= amount[2]) {
+				tens = billRemainder / amount[2];
+				billRemainder = billRemainder - (amount[2] * tens);
+			}
+			if (billRemainder >= amount[1]) {
+				fives = billRemainder / amount[1];
+				billRemainder = billRemainder - (amount[1] * fives);
+			}
+			if (billRemainder >= amount[0]) {
+				ones = billRemainder / amount[0];
+				
+				billRemainder = billRemainder - (amount[0] * ones);
+			}
 
-			} while (billRemainder > 0);
-		}
+		} while (billRemainder > 0);
+		System.out.println("testing");
+		System.out.println(twenties + changeBills[3] + ", " + tens + changeBills[2] + ", " + fives + changeBills[1]
+				+ ", " + ones + changeBills[0]);
 
 	}
 
@@ -81,8 +86,8 @@ public class MakeChangeApp {
 					changeRemainder = changeRemainder / .25;
 					System.out.println(changeRemainder + changeCoins[0]);
 				}
-				
-			}while(changeRemainder >= 0.01);
+
+			} while (changeRemainder >= 0.01);
 		}
 
 	}
