@@ -68,7 +68,7 @@ public class MakeChangeApp {
 			}
 
 		} while (billRemainder >= 1);
-		String cashierSays ="";
+		String cashierSays = "";
 		if (twenties > 0) {
 			cashierSays += twenties + changeBills[3];
 		}
@@ -82,13 +82,13 @@ public class MakeChangeApp {
 			cashierSays += ones + changeBills[0];
 		}
 		System.out.println(cashierSays);
-		
+
 		return billRemainder;
-		
+
 	}
 
 	public static void changeCalc(double billRemainder) {
-		double billR = Math.round(billRemainder*100);
+		double billR = Math.round(billRemainder * 100);
 		billRemainder = billR / 100;
 		String changeCoins[] = { " pennies ", " nickels, ", " dimes, ", " quarters, " };
 		double changeAmount[] = { .01, .05, .10, .25 };
@@ -113,18 +113,18 @@ public class MakeChangeApp {
 			}
 
 		} while (billRemainder >= 0.01);
-		String cashierSays ="";
+		String cashierSays = "";
 		if (quarters > 0) {
-			cashierSays += (int)quarters + changeCoins[3];
+			cashierSays += (int) quarters + changeCoins[3];
 		}
 		if (dimes > 0) {
-			cashierSays += (int)dimes + changeCoins[2];
+			cashierSays += (int) dimes + changeCoins[2];
 		}
 		if (nickels > 0) {
-			cashierSays += (int)nickels + changeCoins[1];
+			cashierSays += (int) nickels + changeCoins[1];
 		}
 		if (pennies > 0) {
-			cashierSays += (int)pennies + changeCoins[0];
+			cashierSays += (int) pennies + changeCoins[0];
 		}
 		System.out.println(cashierSays);
 	}
